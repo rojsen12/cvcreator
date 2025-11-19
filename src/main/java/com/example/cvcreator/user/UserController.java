@@ -43,7 +43,7 @@ public class UserController {
                 .httpOnly(true)
                 .secure(false)
                 .path("/")
-                .sameSite("Strict")
+                .sameSite("Lax")
                 .maxAge(60 * 60) // 1h
                 .build();
 
