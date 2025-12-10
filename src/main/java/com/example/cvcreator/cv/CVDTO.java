@@ -14,7 +14,6 @@ public class CVDTO {
     private UUID id;
     private String templateType;
 
-    // Personal Info
     private String firstName;
     private String lastName;
     private String email;
@@ -23,13 +22,11 @@ public class CVDTO {
     private String profilePicture;
     private String summary;
 
-    // Collections
     private List<ExperienceDTO> experiences = new ArrayList<>();
     private List<EducationDTO> educations = new ArrayList<>();
     private List<String> skills = new ArrayList<>();
     private List<LanguageDTO> languages = new ArrayList<>();
 
-    // Metadata
     private LocalDate createdAt;
     private LocalDate updatedAt;
 }

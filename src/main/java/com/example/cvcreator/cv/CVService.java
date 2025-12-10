@@ -49,7 +49,6 @@ public class CVService {
         cv.setCreatedAt(LocalDate.now());
         cv.setUpdatedAt(LocalDate.now());
 
-        // Add experiences
         if (cvDTO.getExperiences() != null) {
             cvDTO.getExperiences().forEach(expDTO -> {
                 Experience exp = new Experience();
@@ -63,7 +62,6 @@ public class CVService {
             });
         }
 
-        // Add educations
         if (cvDTO.getEducations() != null) {
             cvDTO.getEducations().forEach(eduDTO -> {
                 Education edu = new Education();
@@ -77,7 +75,6 @@ public class CVService {
             });
         }
 
-        // Add languages
         if (cvDTO.getLanguages() != null) {
             cvDTO.getLanguages().forEach(langDTO -> {
                 Language lang = new Language();
@@ -106,7 +103,6 @@ public class CVService {
         cv.setSkills(cvDTO.getSkills());
         cv.setUpdatedAt(LocalDate.now());
 
-        // Update experiences
         cv.getExperiences().clear();
         if (cvDTO.getExperiences() != null) {
             cvDTO.getExperiences().forEach(expDTO -> {
@@ -121,7 +117,6 @@ public class CVService {
             });
         }
 
-        // Update educations
         cv.getEducations().clear();
         if (cvDTO.getEducations() != null) {
             cvDTO.getEducations().forEach(eduDTO -> {
@@ -136,7 +131,6 @@ public class CVService {
             });
         }
 
-        // Update languages
         cv.getLanguages().clear();
         if (cvDTO.getLanguages() != null) {
             cvDTO.getLanguages().forEach(langDTO -> {
@@ -157,7 +151,6 @@ public class CVService {
         cvRepository.delete(cv);
     }
 
-    // Converter
     private CVDTO convertToDTO(CV cv) {
         CVDTO dto = new CVDTO();
         dto.setId(cv.getId());
@@ -173,7 +166,6 @@ public class CVService {
         dto.setCreatedAt(cv.getCreatedAt());
         dto.setUpdatedAt(cv.getUpdatedAt());
 
-        // Convert experiences
         dto.setExperiences(cv.getExperiences().stream().map(exp -> {
             ExperienceDTO expDTO = new ExperienceDTO();
             expDTO.setId(exp.getId());
@@ -186,7 +178,6 @@ public class CVService {
             return expDTO;
         }).collect(Collectors.toList()));
 
-        // Convert educations
         dto.setEducations(cv.getEducations().stream().map(edu -> {
             EducationDTO eduDTO = new EducationDTO();
             eduDTO.setId(edu.getId());
@@ -199,7 +190,6 @@ public class CVService {
             return eduDTO;
         }).collect(Collectors.toList()));
 
-        // Convert languages
         dto.setLanguages(cv.getLanguages().stream().map(lang -> {
             LanguageDTO langDTO = new LanguageDTO();
             langDTO.setId(lang.getId());
