@@ -44,12 +44,20 @@ public class UserController {
                 .secure(false)
                 .path("/")
                 .sameSite("Lax")
-                .maxAge(60 * 60) // 1h
+                .maxAge(60 * 60)
                 .build();
 
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
-        return ResponseEntity.ok(Map.of("message", "Login successful"));
+        return ResponseEntity.ok(Map.of(
+                "message", "Login successful",
+                "user", Map.of(
+                        "id", user.getId().toString(),
+                        "username", user.getUsername(),
+                        "email", user.getEmail(),
+                        "role", user.getRole().name()
+                )
+        ));
     }
 
     @PostMapping("/logout")
