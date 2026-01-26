@@ -14,14 +14,11 @@ public class AiSkillsDTO {
     public static AiSkillsDTO fromAny(Object value) {
         AiSkillsDTO dto = new AiSkillsDTO();
         if (value instanceof List) {
-            // Obsługa listy: ["skill1", "skill2"]
             dto.setTechnical((List<String>) value);
         } else if (value instanceof Map) {
-            // Obsługa obiektu: {"technical": [], "soft": []}
             Map<String, Object> map = (Map<String, Object>) value;
             dto.setTechnical((List<String>) map.getOrDefault("technical", new ArrayList<>()));
             dto.setSoft((List<String>) map.getOrDefault("soft", new ArrayList<>()));
-            // Próba odczytania ID jeśli istnieje
             if (map.containsKey("id") && map.get("id") != null) {
                 try { dto.setId(UUID.fromString(map.get("id").toString())); } catch (Exception e) {}
             }

@@ -2,6 +2,7 @@ package com.example.cvcreator.ticket;
 
 import com.example.cvcreator.user.User;
 import com.example.cvcreator.user.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,19 +16,12 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class TicketService {
 
     private final TicketRepository ticketRepository;
     private final TicketResponseRepository responseRepository;
     private final UserRepository userRepository;
-
-    public TicketService(TicketRepository ticketRepository,
-                         TicketResponseRepository responseRepository,
-                         UserRepository userRepository) {
-        this.ticketRepository = ticketRepository;
-        this.responseRepository = responseRepository;
-        this.userRepository = userRepository;
-    }
 
     public Ticket createTicket(TicketDTO dto, String username) {
         User user = userRepository.findByUsername(username)

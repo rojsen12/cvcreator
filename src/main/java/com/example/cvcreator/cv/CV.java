@@ -29,7 +29,6 @@ public class CV {
     @Column(name = "template_type", nullable = false, length = 50)
     private String templateType;
 
-    // Personal Info
     @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
 
@@ -51,7 +50,6 @@ public class CV {
     @Column(columnDefinition = "TEXT")
     private String summary;
 
-    // Relations
     @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Experience> experiences = new ArrayList<>();
@@ -75,7 +73,6 @@ public class CV {
     @Column(name = "updated_at", nullable = false)
     private LocalDate updatedAt = LocalDate.now();
 
-    // Helper methods
     public void addExperience(Experience experience) {
         experiences.add(experience);
         experience.setCv(this);

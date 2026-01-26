@@ -27,5 +27,5 @@ public class Language {
     private String name;
 
     @Column(nullable = false, length = 50)
-    private String level; // Basic, Intermediate, Advanced, Native
+    private String level;
 }

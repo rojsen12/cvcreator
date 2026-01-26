@@ -1,6 +1,7 @@
 package com.example.cvcreator.user;
 
 import com.example.cvcreator.security.CryptoService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,15 +9,11 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
     private final CryptoService cryptoService;
-
-    public UserService(UserRepository userRepository, CryptoService cryptoService) {
-        this.userRepository = userRepository;
-        this.cryptoService = cryptoService;
-    }
 
     public User createUser(String username, String email, String rawPassword, User.Role role) {
         String hashedPassword = cryptoService.encrypt(rawPassword);
@@ -45,9 +42,5 @@ public class UserService {
 
     public Optional<User> getByUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    public Optional<User> getByEmail(String email) {
-        return userRepository.findByEmail(email);
     }
 }

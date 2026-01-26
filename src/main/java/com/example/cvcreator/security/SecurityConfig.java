@@ -38,6 +38,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/api/cv-edit/**").authenticated()
+                        .requestMatchers("/api/cv/**").authenticated()
+                        .requestMatchers("/api/cv-ai/**").authenticated()
                         .requestMatchers("/api/users/register", "/api/users/login", "/api/users/logout").permitAll()
                         .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()

@@ -21,3 +21,4 @@ public interface TicketRepository extends JpaRepository<Ticket, UUID> {
     @Query("SELECT COUNT(t) FROM Ticket t WHERE t.createdAt >= :startOfDay")
     long countTodayTickets(@Param("startOfDay") LocalDateTime startOfDay);
 }
+

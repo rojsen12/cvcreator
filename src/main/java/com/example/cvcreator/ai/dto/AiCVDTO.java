@@ -26,6 +26,5 @@ public class AiCVDTO {
 
     private List<String> interests = new ArrayList<>();
 
-    // Pole do zarządzania kolejnością sekcji na froncie
     private List<String> sectionOrder = Arrays.asList("summary", "experience", "education", "skills", "projects", "interests");
 }

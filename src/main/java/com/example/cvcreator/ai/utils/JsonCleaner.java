@@ -7,13 +7,11 @@ public class JsonCleaner {
             return "{}";
         }
 
-        // Usuń markdown code blocks
         String cleaned = rawResponse
                 .replaceAll("```json\\s*", "")
                 .replaceAll("```\\s*", "")
                 .trim();
 
-        // Jeśli nie zaczyna się od { lub [, spróbuj znaleźć JSON
         if (!cleaned.startsWith("{") && !cleaned.startsWith("[")) {
             int start = cleaned.indexOf("{");
             int arrayStart = cleaned.indexOf("[");

@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UserDTO dto, HttpServletResponse response) throws Exception {
+    public ResponseEntity<?> login(@RequestBody UserDTO dto, HttpServletResponse response) {
         Optional<User> userOpt = userService.login(dto.getUsername(), dto.getPassword());
 
         if (userOpt.isEmpty()) {

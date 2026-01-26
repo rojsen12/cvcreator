@@ -1,11 +1,13 @@
 package com.example.cvcreator.ai.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class SectionRequestDTO {
+@Builder
+public class SectionRequest {
     private String sectionType;
-    private String userInput;
+    private String currentText;
+    private String userMessage;
     private String language;
-    private Object existingData;
 }
