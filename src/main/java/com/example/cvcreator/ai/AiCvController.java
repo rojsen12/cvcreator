@@ -31,6 +31,14 @@ public class AiCvController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/my-ai-cv")
+    public ResponseEntity<CVDocument> getMyAiCv(Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        return aiCVRepository.findByUserId(user.getId())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("/save")
     public ResponseEntity<CVDocument> saveCv(
             @RequestBody CVDocument request,
