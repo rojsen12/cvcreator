@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UserDTO dto, HttpServletResponse response) throws Exception {
+    public ResponseEntity<?> login(@RequestBody UserDTO dto, HttpServletResponse response) {
         Optional<User> userOpt = userService.login(dto.getUsername(), dto.getPassword());
 
         if (userOpt.isEmpty()) {
@@ -43,13 +43,21 @@ public class UserController {
                 .httpOnly(true)
                 .secure(false)
                 .path("/")
-                .sameSite("Strict")
-                .maxAge(60 * 60) // 1h
+                .sameSite("Lax")
+                .maxAge(60 * 60)
                 .build();
 
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
-        return ResponseEntity.ok(Map.of("message", "Login successful"));
+        return ResponseEntity.ok(Map.of(
+                "message", "Login successful",
+                "user", Map.of(
+                        "id", user.getId().toString(),
+                        "username", user.getUsername(),
+                        "email", user.getEmail(),
+                        "role", user.getRole().name()
+                )
+        ));
     }
 
     @PostMapping("/logout")
